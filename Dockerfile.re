@@ -133,6 +133,12 @@ ENV PATH $PATH:/opt
 # uber-apk-signer
 RUN wget -q -O "/opt/uber-apk-signer.jar" https://github.com/patrickfav/uber-apk-signer/releases/download/v${UBERAPK_VERSION}/uber-apk-signer-${UBERAPK_VERSION}.jar
 
+# Ghidra
+RUN wget -q -O "/opt/ghidra.zip" https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.1.2_build/ghidra_11.1.2_PUBLIC_20240709.zip && cd /opt \
+    && unzip /opt/ghidra.zip -d . \
+    && chmod -R u+x /opt/ghidra_11.1.2_PUBLIC \
+    && rm -f /opt/ghidra.zip 
+
 # apkleaks
 RUN pip3 install apkleaks
 # apkleaks requires jadx to be on the path
